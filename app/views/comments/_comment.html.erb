@@ -13,3 +13,10 @@
               method: :delete,
               data: { confirm: "Are you sure?" } %>
 </p>
+<p>
+<% if comment.status != "archived" %>
+	<%= form_for comment, url: article_comment_path(comment.article, comment), method: :patch do |form| %>
+		<%= select_tag 'status', options_for_select(['public', 'private', 'archived'],  comment.status), :onchange => "this.form.submit();" %>
+	<% end %>
+<% 	end  %>
+</p>
